@@ -1,0 +1,53 @@
+#Asking for user input
+print('Put your unsolved cipher here, then type solve: ')
+unsolved_ls = []
+while True:
+    unsolved_input = input()
+    if unsolved_input == 'solve':
+        break
+    unsolved_ls.append(unsolved_input)
+unsolved = '\n'.join(unsolved_ls)
+
+
+#creating lists to rotate through and to draw elements of the alphabet from for the dictionary
+alphabet_upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+alphabet_lower = alphabet_upper.lower()
+
+#building a dictionary to count the number of occurences
+alphabet_dictionary = {}
+for i in alphabet_lower:
+    alphabet_dictionary.update({i : 0})
+
+#counting the frequency
+for letter in unsolved:
+    if letter in alphabet_upper or letter in alphabet_lower:
+        letter = letter.lower()
+        alphabet_dictionary[letter] += 1
+
+#finding the highest frequncy letter
+greatest_frequency = 0
+most_frequent = 'a'
+for key in alphabet_dictionary:
+    if alphabet_dictionary[key] > greatest_frequency:
+        most_frequent = key
+        greatest_frequency = alphabet_dictionary[key]
+
+#determining the rotation
+rotation = alphabet_lower.index(most_frequent) - 4
+
+#building the solved string up by concatenating each letter and character after rotating the letters back
+solved = ''
+for character in unsolved:
+    if character in alphabet_upper:
+        solved += alphabet_upper[(alphabet_upper.index(character) - rotation) % 26]
+    elif character in alphabet_lower:
+        solved += alphabet_lower[(alphabet_lower.index(character) - rotation) % 26]
+    else:
+        solved += character
+
+#printing the information
+print (f'''
+The most common letter was: {most_frequent}
+The rotation was: {rotation}
+Here is the solved cipher:\n{solved}
+''')
