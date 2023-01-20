@@ -13,7 +13,7 @@ unsolved = '\n'.join(unsolved_ls)
 alphabet_upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 alphabet_lower = alphabet_upper.lower()
 
-#building a dictionary to count the number of occurences
+#building a dictionary to count the number of occurrences
 alphabet_dictionary = {}
 for i in alphabet_lower:
     alphabet_dictionary.update({i : 0})
@@ -24,7 +24,7 @@ for letter in unsolved:
         letter = letter.lower()
         alphabet_dictionary[letter] += 1
 
-#finding the highest frequncy letter
+#finding the highest frequency letter
 greatest_frequency = 0
 most_frequent = 'a'
 for key in alphabet_dictionary:
